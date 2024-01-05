@@ -40,7 +40,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#18b6db',
           'secondaryColour' => '#262221',
-          'logoUrl' => '/images/tigers-logo.png',
+          'logoUrl' => '/images/logos/nrhc/sheffield_ice_tigers.png',
           'players' => array(),
         ),
         array(
@@ -70,7 +70,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Kingston St, Hull HU1 2DZ',
           'primaryColour' => '#862325',
           'secondaryColour' => '#e5dfc7',
-          'logoUrl' => 'https://scontent-lhr6-1.xx.fbcdn.net/v/t39.30808-6/345057498_780422150364428_831730145373691674_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=0uVHVzkT0KAAX9GEvir&_nc_ht=scontent-lhr6-1.xx&oh=00_AfBBZbPlhWmbxWFPcyrJaAGKZ-wYsrUkXe0k33z40NTivg&oe=659A9738',
+          'logoUrl' => '/images/logos/nrhc/kingston_cobras.png',
           'players' => array(),
         ),
         array(
