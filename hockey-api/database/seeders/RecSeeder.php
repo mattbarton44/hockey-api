@@ -40,7 +40,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#18b6db',
           'secondaryColour' => '#262221',
-          'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2018/12/Sheffield-Ice-Tigers-2021_RoundelLogo-300x300.jpg',
+          'logoUrl' => '/images/tigers-logo.png',
           'players' => array(),
         ),
         array(
@@ -80,7 +80,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'The Causeway, Stockton-on-Tees, Billingham TS23 2LJ',
           'primaryColour' => '#c7001e',
           'secondaryColour' => '#ffffff',
-          'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2019/04/comets-128x75.jpg',
+          'logoUrl' => 'https://scontent-lhr8-1.xx.fbcdn.net/v/t31.18172-8/467722_301939683229076_504439514_o.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7a1959&_nc_ohc=VcBCDk16mJ8AX-tQ2xL&_nc_ht=scontent-lhr8-1.xx&oh=00_AfAGZDJAYzvnF4_BxRdoUXEVgjb-dWCkBX-Cgn6zHBVN-w&oe=65BE749C',
           'players' => array(),
         ),
         array(

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-100 p-8">
-    <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4" v-if="data">
+    <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-4" v-if="data">
       
       <div>
         <div class="bg-white border border-grey-600 w-full">
@@ -295,6 +295,11 @@
             </table>
           </div>
         </div>
+      </div>
+
+      
+      <div>
+        <hockey-fixture :data="data.games.find((g) => g.status === 'UPCOMING')" />
       </div>
       
     </div>
