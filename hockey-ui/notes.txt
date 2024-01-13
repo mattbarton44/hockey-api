@@ -1,0 +1,15 @@
+should game status be implicit??
+
+upcoming = has time but it's in the future
+tbc = has no time
+completed = has score_type?
+
+postponed not covered?
+
+      // 'status' => '', // [ UPCOMING, COMPLETED, POSTPONED, TBC ] 
+
+
+
+      do game result card
+      do single fixture card
+      

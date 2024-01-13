@@ -130,12 +130,13 @@ class RecSeeder extends Seeder
         array('Samurai', 'Don Valley Vikings', '2023-02-03 22:20:00', 'COMPLETED', 'SO', 3, 3, 2, 1, $seasonId2, 'league'),
         array('Kingston Cobras', 'Whitley Bay Islanders', '2023-03-16 22:10:00', 'COMPLETED', 'FT', 1, 2, null, null, $seasonId2, 'league'),
         array('Don Valley Vikings', 'Sheffield Ice Tigers', '2023-11-18 22:20:00', 'COMPLETED', 'FT', 2, 4, null, null, $seasonId1, 'challenge'),
-        array('Sheffield Ice Tigers', 'Cleveland Comets', '2024-01-06 22:10:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
+        array('Sheffield Ice Tigers', 'Cleveland Comets', '2024-01-06 22:10:00', 'COMPLETED', 'FT', 3, 4, null, null, $seasonId1, 'league'),
         array('Samurai', 'Sheffield Ice Tigers', '2024-02-03 22:20:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Don Valley Vikings', 'Sheffield Ice Tigers', '2024-03-30 22:20:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Sheffield Ice Tigers', 'Kingston Cobras', '2024-05-18 16:40:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Sheffield Ice Tigers', 'Samurai', '2024-05-04 16:40:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Sheffield Ice Tigers', 'Whitley Bay Islanders', '2024-03-16 22:10:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
+        array('Kingston Cobras', 'Sheffield Ice Tigers', '2024-06-15 17:00:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
       ];
 
       foreach($nrhcGames as $game) {

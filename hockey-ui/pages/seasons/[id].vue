@@ -121,7 +121,7 @@
         </div>
       </div>
 
-      <hockey-upcoming-fixtures :data="data.games.filter((g) => g.status === 'UPCOMING').slice(0, 5)"></hockey-upcoming-fixtures>
+      <hockey-upcoming-fixtures :data="data.games.filter((g) => g.status === 'UPCOMING').sort((a, b) => Date.parse(a.time) - Date.parse(b.time))"></hockey-upcoming-fixtures>
       
       <div>
         <div class="bg-white border border-grey-600 w-full">
@@ -316,6 +316,8 @@ const lastestResultsGames = computed(() => {
       return { ...g, winner, homeGoals, awayGoals }
     })
 })
+
+
 
 
 const standings = computed(() => {

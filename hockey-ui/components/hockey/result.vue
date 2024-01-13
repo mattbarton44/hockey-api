@@ -5,17 +5,26 @@
     </slot>
     <div class="text-sm">
       <div>
-        <div class="">
+        <div class="flex justify-between bg-gray-100 border-y border-gray-200 px-6 py-2 text-xs uppercase font-semibold">
           <div class="">atlantic playoffs</div>
           <div class="">sunday march 26th</div>
         </div>
-        <div class="flex justify-between">
-          <div class="">Home team</div>
-          <div class="">Score</div>
-          <div class="">Away Team</div>
+        <div class="flex justify-between p-6">          
+          <div class="py-2">
+            <img class="max-w-12 h-10 mr-3 my-auto" :src=" props.data.home_team.logoUrl" />
+            <span class="font-semibold text-md my-auto">{{ props.data.home_team.name}}</span>
+          </div>
+          <div class="py-2 my-auto w-8 text-center text-xs text-gray-500 font-semibold">
+            Score
+          </div>
+          <div class="py-2 justify-end text-right">
+            <img class="max-w-12 h-10 ml-3 my-auto" :src=" props.data.away_team.logoUrl" />
+            <span class="font-semibold text-md my-auto">{{ props.data.away_team.name}}</span>
+          </div>
+
         </div>
       </div>
-      <div>
+      <div v-if="props.data.events || true">
         <table>
           <thead>
             <tr>
