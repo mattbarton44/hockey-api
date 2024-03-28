@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-pink-300 h-12 flex items-center p-4">
+  <div class="bg-slate-300 h-12 flex items-center p-4">
     header test
   </div>
 </template>
