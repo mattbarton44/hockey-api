@@ -50,7 +50,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#c81930',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2022/12/Samuria-300x300.jpg',
+          'logoUrl' => '/images/logos/nrhc/samuria.jpg',
           'players' => array(),
         ),
         array(
@@ -60,7 +60,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#ff6600',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2018/12/vikings-128x85.png',
+          'logoUrl' => '/images/logos/nrhc/don_valley_vikings.png',
           'players' => array(),
         ),
         array(
@@ -80,7 +80,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'The Causeway, Stockton-on-Tees, Billingham TS23 2LJ',
           'primaryColour' => '#c7001e',
           'secondaryColour' => '#ffffff',
-          'logoUrl' => 'https://scontent-lhr8-1.xx.fbcdn.net/v/t31.18172-8/467722_301939683229076_504439514_o.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7a1959&_nc_ohc=VcBCDk16mJ8AX-tQ2xL&_nc_ht=scontent-lhr8-1.xx&oh=00_AfAGZDJAYzvnF4_BxRdoUXEVgjb-dWCkBX-Cgn6zHBVN-w&oe=65BE749C',
+          'logoUrl' => '/images/logos/nrhc/cleveland_comets.jpg',
           'players' => array(),
         ),
         array(
@@ -90,7 +90,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Hillheads Rd, Whitley Bay NE25 8HP',
           'secondaryColour' => '#000000',
           'primaryColour' => '#fae017',
-          'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2018/12/image1-300x300.png',
+          'logoUrl' => '/images/logos/nrhc/whitley_bay_islanders.png',
           'players' => array(),
         ),
       ];
@@ -126,6 +126,7 @@ class RecSeeder extends Seeder
       // 'scoreType' => '', // [ FT, OT, SO, FF]
       // $table->string('type')->nullable(); - always league
       $nrhcGames = [
+        /*
         array('Sheffield Ice Tigers', 'Cleveland Comets', '2023-01-06 22:10:00', 'COMPLETED', 'FT', 6, 2, null, null, $seasonId2, 'league'),
         array('Samurai', 'Don Valley Vikings', '2023-02-03 22:20:00', 'COMPLETED', 'SO', 3, 3, 2, 1, $seasonId2, 'league'),
         array('Kingston Cobras', 'Whitley Bay Islanders', '2023-03-16 22:10:00', 'COMPLETED', 'FT', 1, 2, null, null, $seasonId2, 'league'),
@@ -137,6 +138,7 @@ class RecSeeder extends Seeder
         array('Sheffield Ice Tigers', 'Samurai', '2024-05-04 16:40:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Sheffield Ice Tigers', 'Whitley Bay Islanders', '2024-03-16 22:10:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
         array('Kingston Cobras', 'Sheffield Ice Tigers', '2024-06-15 17:00:00', 'UPCOMING', null, null, null, null, null, $seasonId1, 'league'),
+        */
       ];
 
       foreach($nrhcGames as $game) {

@@ -30,11 +30,11 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-      $competition = Competition::create($request->all());
+      $game = Game::create($request->all());
       return response()->json([
           'status' => true,
-          'message' => "Competition Created successfully!",
-          'data' => $competition
+          'message' => "Game Created successfully!",
+          'data' => $game,
       ], 200);
     }
 

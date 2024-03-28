@@ -40,7 +40,7 @@
 import axios from 'axios';
 const route = useRoute();
 
-const clubData = ref({});
+const parentData = ref({});
 
 const data = ref({
   club_id: route.params.clubId,
@@ -56,17 +56,16 @@ const data = ref({
 
 axios.get(`http://localhost/api/clubs/${route.params.clubId}`)
 .then((response) => {
-  clubData.value = response.data.data;
-  data.value.name = clubData.value.name;
-  data.value.nickname = clubData.value.nickname;
-  data.value.description = clubData.value.description;
-  data.value.logoUrl = clubData.value.logoUrl;
-  data.value.venueName = clubData.value.venueName;
-  data.value.venueAddress = clubData.value.venueAddress;
-  data.value.primaryColour = clubData.value.primaryColour;
-  data.value.secondaryColour = clubData.value.secondaryColour;
-})
-.catch((e) => console.log(e))
+  parentData.value = response.data.data;
+  data.value.name = parentData.value.name;
+  data.value.nickname = parentData.value.nickname;
+  data.value.description = parentData.value.description;
+  data.value.logoUrl = parentData.value.logoUrl;
+  data.value.venueName = parentData.value.venueName;
+  data.value.venueAddress = parentData.value.venueAddress;
+  data.value.primaryColour = parentData.value.primaryColour;
+  data.value.secondaryColour = parentData.value.secondaryColour;
+}).catch((e) => console.log(e))
 
 const createModel = () => {
   axios.post('http://localhost/api/teams', data.value)

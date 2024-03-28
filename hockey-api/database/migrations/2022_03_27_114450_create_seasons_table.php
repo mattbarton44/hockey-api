@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('name');
-            $table->date('startDate');
-            $table->date('endDate');
+            $table->string('name')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
             $table->foreignId('competition_id')->constrained();
         });
     }

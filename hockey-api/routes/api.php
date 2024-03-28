@@ -40,3 +40,4 @@ Route::apiResource('gameStatistics', GameStatisticController::class);
 Route::apiResource('gameEvents', GameEventController::class);
 
 Route::get('/competitions/{competition}/seasons', [CompetitionController::class, 'seasons']);
+Route::get('/seasons/{season}/spawnAllGames', [SeasonController::class, 'spawnAllGames']);
