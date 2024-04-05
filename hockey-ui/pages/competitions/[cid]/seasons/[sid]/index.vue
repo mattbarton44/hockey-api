@@ -63,7 +63,7 @@
         <div class="bg-white border border-grey-600 w-full col-span-2">
           <div class="text-base font-semibold p-6 flex justify-between">
             <div>Games</div>
-            <div><navButton @click="navigateTo(`/seasons/${data.id}/games/new`)">Add New</navButton></div>
+            <div><navButton @click="navigateTo(`/competitions/${cid}/seasons/${sid}/games/new`)">Add New</navButton></div>
           </div>
           <div class="text-sm">
             <table class="w-full">
@@ -108,8 +108,8 @@
                   </td>
                   <td class="whitespace-nowrap">{{d.venueName}}</td>
                   <td class="whitespace-nowrap font-semibold space-x-2">
-                    <navButton @click="navigateTo(`/games/${d.id}`)">View</navButton>
-                    <navButton @click="navigateTo(`/games/${d.id}/edit`)">Edit</navButton>
+                    <navButton @click="navigateTo(`/competitions/${cid}/seasons/${sid}/games/${d.id}`)">View</navButton>
+                    <navButton @click="navigateTo(`/competitions/${cid}/seasons/${sid}/games/${d.id}/edit`)">Edit</navButton>
                     <navButton @click="deleteGame(d.id)">Delete</navButton>
                   </td>
                 </tr>
@@ -243,12 +243,12 @@
 import axios from 'axios'
 
 const route = useRoute();
-const id = route.params;
+const { cid, sid } = route.params;
 
 let data = ref(null);
 
 const getData = () => {
-  axios.get(`http://localhost/api/seasons/${route.params.id}`)
+  axios.get(`http://localhost/api/seasons/${sid}`)
   .then((response) => {
     data.value = response.data.data;
   })
@@ -299,12 +299,12 @@ const TBCGameSchema = {
   visitingTeamScore: null,
   homeTeamScoreSo: null,
   visitingTeamScoreSo: null,
-  season_id: id,
+  season_id: sid,
   type: 'league',
 }
 
 const spawnAllGames = () => {
-  axios.get(`http://localhost/api/seasons/${route.params.id}/spawnAllGames`)
+  axios.get(`http://localhost/api/seasons/${sid}/spawnAllGames`)
   .then((response) => {
     console.log(response)
     getData();
@@ -356,5 +356,5 @@ const standings = computed(() => {
 
 
 
-definePageMeta({ requiresAuth: true });
+definePageMeta({ requiresAuth: true, name: 'View Season' });
 </script>

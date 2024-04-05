@@ -40,7 +40,5 @@ const createModel = () => {
 }
 
 
-definePageMeta({
-  requiresAuth: true,
-})
+definePageMeta({ requiresAuth: true, name: 'New Competition' })
 </script>

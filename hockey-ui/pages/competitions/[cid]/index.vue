@@ -25,7 +25,7 @@
             <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"># of Games</th>
           </thead>
           <tbody>
-            <tr v-for="row in data.seasons" class="hover:bg-slate-100 cursor-pointer" @click="navigateTo(`/seasons/${row.id}`)">
+            <tr v-for="row in data.seasons" class="hover:bg-slate-100 cursor-pointer" @click="navigateTo(`/competitions/${cid}/seasons/${row.id}`)">
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.name }}</td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.startDate }}</td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.endDate }}</td>
@@ -43,10 +43,10 @@
 import axios from 'axios'
 
 const route = useRoute()
-const id = route.params
+const { cid } = route.params;
 
 let data = ref(null);
-axios.get(`http://localhost/api/competitions/${route.params.id}`)
+axios.get(`http://localhost/api/competitions/${cid}`)
 .then((response) => {
   data.value = response.data.data;
 })
@@ -54,7 +54,5 @@ axios.get(`http://localhost/api/competitions/${route.params.id}`)
 
 const rowProps = ['id', 'name', 'description'];
 
-definePageMeta({
-  requiresAuth: true,
-})
+definePageMeta({ requiresAuth: true });
 </script>

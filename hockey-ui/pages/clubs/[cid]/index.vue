@@ -22,7 +22,7 @@
           List of Teams
         </div>
         <div>
-          <button class="text-xs bg-green-400 px-2 py-1 rounded-sm hover:bg-green-600 hover:text-white" @click="navigateTo(`/clubs/${data.id}/teams/new`)">
+          <button class="text-xs bg-green-400 px-2 py-1 rounded-sm hover:bg-green-600 hover:text-white" @click="navigateTo(`/clubs/${cid}/teams/new`)">
             Create Team
           </button>
         </div>
@@ -39,7 +39,7 @@
             <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"># of Rosters</th>
           </thead>
           <tbody>
-            <tr v-for="row in data.teams" class="hover:bg-slate-100 cursor-pointer" @click="navigateTo(`/teams/${row.id}`)">
+            <tr v-for="row in data.teams" class="hover:bg-slate-100 cursor-pointer" @click="navigateTo(`/clubs/${cid}/teams/${row.id}`)">
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.name }}</td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.nickname }}</td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -65,10 +65,10 @@
 import axios from 'axios'
 
 const route = useRoute()
-const id = route.params
+const { cid } = route.params
 
 let data = ref(null);
-axios.get(`http://localhost/api/clubs/${route.params.id}`)
+axios.get(`http://localhost/api/clubs/${cid}`)
 .then((response) => {
   data.value = response.data.data;
 })
@@ -76,7 +76,5 @@ axios.get(`http://localhost/api/clubs/${route.params.id}`)
 
 const rowProps = ['id', 'name', 'nickname', 'description', 'venueName', 'venueAddress'];
 
-definePageMeta({
-  requiresAuth: true,
-})
+definePageMeta({ requiresAuth: true });
 </script>

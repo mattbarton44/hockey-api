@@ -972,5 +972,5 @@ const standings = computed(() => {
 
 */
 
-definePageMeta({ requiresAuth: true });
+definePageMeta({ requiresAuth: true, name: 'Test' });
 </script>

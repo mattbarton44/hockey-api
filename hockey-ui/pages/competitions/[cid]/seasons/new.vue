@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-xl space-y-4">
-    <div class="font-bold">Create New Game</div> 
-    <propRow label="Season ID" :value="route.params.seasonId" />
+    <div class="font-bold">Create New Season</div> 
+    <propRow label="Competition ID" :value="cid" />
     <stackedInput label="Name">
       <input type="text" v-model="data.name" class="w-full border py-1.5 px-2 placeholder:text-gray-400 text-sm text-gray-900" />
     </stackedInput>
@@ -22,18 +22,19 @@
 <script setup>
 import axios from 'axios';
 const route = useRoute();
+const { cid } = route.params;
 
 const parentData = ref({});
 
 const data = ref({
-  competition_id: route.params.seasonId,
+  competition_id: cid,
   name: '',
   startDate: '',
   endDate: '',
 });
 
 
-axios.get(`http://localhost/api/competitions/${route.params.competitionId}`)
+axios.get(`http://localhost/api/competitions/${cid}`)
 .then((response) => {
   parentData.value = response.data.data;
   data.value.name = parentData.value.name;
@@ -43,17 +44,11 @@ const createSeason = () => {
   axios.post('http://localhost/api/seasons', data.value)
   .then((response) => {
     console.log(response);
-    navigateTo('/competitions/'+ route.params.competitionId)
+    navigateTo(`/competitions/${cid}`)
   })
   .catch((e) => console.log(e))
 }
 
 
-definePageMeta({
-  requiresAuth: true,
-  alias: [
-    '/seasons/:seasonId/games/new',
-  ],
-  label: 'New Game',
-})
+definePageMeta({ requiresAuth: true });
 </script>

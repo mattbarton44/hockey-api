@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-xl space-y-4">
     <div class="font-bold">Create New Team</div> 
-    <propRow label="Club ID" :value="route.params.clubId" />
+    <propRow label="Club ID" :value="cid" />
     <stackedInput label="Name">
       <input type="text" v-model="data.name" class="w-full border py-1.5 px-2 placeholder:text-gray-400 text-sm text-gray-900" />
     </stackedInput>
@@ -39,11 +39,12 @@
 <script setup>
 import axios from 'axios';
 const route = useRoute();
+const { cid } = route.params;
 
 const parentData = ref({});
 
 const data = ref({
-  club_id: route.params.clubId,
+  club_id: cid,
   name: '',
   nickname: null,
   description: null,
@@ -54,7 +55,7 @@ const data = ref({
   secondaryColour: null,
 })
 
-axios.get(`http://localhost/api/clubs/${route.params.clubId}`)
+axios.get(`http://localhost/api/clubs/${cid}`)
 .then((response) => {
   parentData.value = response.data.data;
   data.value.name = parentData.value.name;
@@ -71,16 +72,10 @@ const createModel = () => {
   axios.post('http://localhost/api/teams', data.value)
   .then((response) => {
     console.log(response);
-    navigateTo('/clubs/'+ route.params.clubId)
+    navigateTo(`/clubs/${cid}`)
   })
   .catch((e) => console.log(e))
 }
 
-definePageMeta({
-  requiresAuth: true,
-  alias: [
-    '/clubs/:clubId/teams/new',
-  ],
-  label: 'New Team',
-})
+definePageMeta({ requiresAuth: true });
 </script>

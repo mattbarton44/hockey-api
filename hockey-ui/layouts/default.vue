@@ -1,16 +1,26 @@
 <template>
-  <div class="flex w-full h-screen">
+   <div class="min-h-full">
     <navBar />
-    <div class="bg-slate-100 w-full h-full flex flex-col flex-1">
-      <headerBar />
-      <div class="p-4 h-full overflow-y-auto">
+    <headerBar />
+    <main>
+      <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 overflow-y-auto h-full">
+        <!-- Your content -->
         <slot />
       </div>
-    </div>
+    </main>
   </div>
-  
 </template>
 
 <script setup>
+const route = useRoute()
+
+useHead({
+  bodyAttrs: {
+    class: 'h-full',
+  },
+  htmlAttrs: {
+    class: 'h-full bg-gray-100',
+  },
+});
 
 </script>

@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  definePageMeta({ requiresAuth: true });
+  definePageMeta({ requiresAuth: true, name: 'Index' });
 </script>
