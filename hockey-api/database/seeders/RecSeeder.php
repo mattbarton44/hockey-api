@@ -15,7 +15,7 @@ class RecSeeder extends Seeder
         'name' => 'Northern Rec Hockey Cup',
         'nickname' => 'NRHC',
         'description' => 'Recreational league style cup competition',
-        'logoUrl' => 'https://nrhc.ukaiht.co.uk/wp-content/uploads/2018/12/Norther-rec-logo.png',
+        'logoUrl' => 'public/images/logos/Norther-rec-logo.png',
       ]);
 
       $seasonId1 = DB::table('seasons')->insertGetId([
@@ -40,7 +40,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#18b6db',
           'secondaryColour' => '#262221',
-          'logoUrl' => '/images/logos/nrhc/sheffield_ice_tigers.png',
+          'logoUrl' => 'public/images/logos/sheffield_ice_tigers.png',
           'players' => array(),
         ),
         array(
@@ -50,7 +50,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#c81930',
           'secondaryColour' => '#000000',
-          'logoUrl' => '/images/logos/nrhc/samuria.jpg',
+          'logoUrl' => 'public/images/logos/samuria.jpg',
           'players' => array(),
         ),
         array(
@@ -60,7 +60,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Coleridge Road, S22BZ',
           'primaryColour' => '#ff6600',
           'secondaryColour' => '#000000',
-          'logoUrl' => '/images/logos/nrhc/don_valley_vikings.png',
+          'logoUrl' => 'public/images/logos/don_valley_vikings.png',
           'players' => array(),
         ),
         array(
@@ -70,7 +70,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Kingston St, Hull HU1 2DZ',
           'primaryColour' => '#862325',
           'secondaryColour' => '#e5dfc7',
-          'logoUrl' => '/images/logos/nrhc/kingston_cobras.png',
+          'logoUrl' => 'public/images/logos/kingston_cobras.png',
           'players' => array(),
         ),
         array(
@@ -80,7 +80,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'The Causeway, Stockton-on-Tees, Billingham TS23 2LJ',
           'primaryColour' => '#c7001e',
           'secondaryColour' => '#ffffff',
-          'logoUrl' => '/images/logos/nrhc/cleveland_comets.jpg',
+          'logoUrl' => 'public/images/logos/cleveland_comets.jpg',
           'players' => array(),
         ),
         array(
@@ -90,7 +90,7 @@ class RecSeeder extends Seeder
           'venueAddress' => 'Hillheads Rd, Whitley Bay NE25 8HP',
           'secondaryColour' => '#000000',
           'primaryColour' => '#fae017',
-          'logoUrl' => '/images/logos/nrhc/whitley_bay_islanders.png',
+          'logoUrl' => 'public/images/logos/whitley_bay_islanders.png',
           'players' => array(),
         ),
       ];

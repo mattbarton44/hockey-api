@@ -2,8 +2,8 @@
   <div class="">
     <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-4" v-if="data">
       <div class="bg-white border border-grey-600 w-full flex col-span-2">
-        <div class="p-2">
-          <img :src="data.logoUrl || data.competition.logoUrl ||'/images/default-logo.png'" class="w-20 h-20"/>
+        <div class="p-2">       
+          <logo class="h-20 w-20" :sources="[data.logoUrl, data.competition.logoUrl]" />
         </div>
         <div class="my-auto">
           <div class="text-3xl font-semibold py-2 px-6">{{data.competition.name}} - {{data.name}}</div>         
@@ -44,7 +44,7 @@
               <tbody class="divide-y divide-gray-200">
                 <tr v-for="d, i in data.rosters" class="">
                   <td class="flex space-x-2 px-4 py-2">
-                    <img class="w-10 h-10 mr-3 my-auto" :src="d.team.logoUrl" />
+                    <logo class="w-10 h-10 mr-3 my-auto" :sources="[d.team.logoUrl, d.team.club.logoUrl]" />
                     <div class="my-auto font-semibold">{{  d.team.name }}</div>
                   </td>
                   <td class="text-xs pr-2">
@@ -83,7 +83,7 @@
                   </td>
                   <td class="flex space-x-2 py-2 px-12">
                     <div class="flex space-x-2 grow basis-1/2">
-                      <img class="w-10 h-10 mr-3 my-auto" :src="d.home_team.logoUrl" />
+                      <logo class="w-10 h-10 mr-3 my-auto" :sources="[d.home_team.logoUrl]" />
                       <span class="font-semibold text-md my-auto">{{d.home_team.name}}</span>
                     </div>
                     <div class="my-auto text-center text-xs text-gray-500 font-semibold">
@@ -102,8 +102,8 @@
                       <div v-else>vs</div>
                     </div>
                     <div class="flex space-x-2 justify-end text-right grow basis-1/2">
-                      <span class="font-semibold text-md my-auto">{{d.away_team.name}}</span>
-                      <img class="w-10 h-10 ml-3 my-auto" :src="d.away_team.logoUrl" />
+                      <span class="font-semibold text-md my-auto mr-3">{{d.away_team.name}}</span>
+                      <logo class="w-10 h-10 my-auto" :sources="[d.away_team.logoUrl]" />
                     </div>
                   </td>
                   <td class="whitespace-nowrap">{{d.venueName}}</td>
@@ -137,9 +137,9 @@
               </thead>
               <tbody class="divide-y divide-gray-200">
                 <tr v-for="t, i in standings" class="px-4">
-                  <td class="text-center w-16 pl-4 pr-4 font-semibold">{{ i+1 }}</td>
+                  <td class="text-center w-16 px-2 font-semibold">{{ i+1 }}</td>
                   <td class="flex py-2">
-                    <img class="w-6 h-6 mr-3 my-auto" :src="t.logo" />
+                    <logo class="w-6 h-6 mr-3 my-auto" :sources="[t.logo]" />
                     <span class="font-semibold">{{t.team}}</span>
                   </td>
                   <td class="text-center whitespace-nowrap font-semibold">{{t.gp}}</td>
@@ -174,9 +174,9 @@
               </thead>
               <tbody class="divide-y divide-gray-200">
                 <tr v-for="t, i in standings" class="px-4">
-                  <td class="text-center w-12 pl-4 pr-4 font-semibold">{{ i+1 }}</td>
+                  <td class="text-center w-12 px-4 font-semibold">{{ i+1 }}</td>
                   <td class="flex py-2">
-                    <img class="w-6 h-6 mr-3 my-auto" :src="t.logo" />
+                    <logo class="w-6 h-6 mr-3 my-auto" :sources="[t.logo]" />
                     <span class="font-semibold">{{t.team}}</span>
                   </td>
                   <td class="text-center whitespace-nowrap font-semibold">{{t.gp}}</td>

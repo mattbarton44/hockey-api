@@ -15,7 +15,7 @@ class LeagueSeeder extends Seeder
         'name' => 'NIHL Division 1 North (Moralee)',
         'nickname' => 'NIHL1 North',
         'description' => 'The NIHL Division 1 North sits at the second tier of the National Ice Hockey League structure, alongside the NIHL Division 1 South.',
-        'logoUrl' => 'https://nihlstats.files.wordpress.com/2021/08/moralee.png',
+        'logoUrl' => 'public/images/logos/moralee.png',
       ]);
       $nseason1 = DB::table('seasons')->insertGetId([
         'name' => '22/23',
@@ -38,7 +38,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => '23 Coleridge Rd, Sheffield S9 5DA',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/scimitars-logo.png',
+          'logoUrl' => 'public/images/logos/scimitars-logo.png',
           'players' => array(
             "Michael Danecko",
             "Fritz Heinzle",
@@ -78,7 +78,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Earle Rd, Widnes WA8 0TA',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/Wild-Logo.png',
+          'logoUrl' => 'public/images/logos/Wild-Logo.png',
           'players' => array(),
         ),
         array(
@@ -88,7 +88,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Bolero Square, Belward St, Nottingham NG1 1LA',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/Nottingham_Lions_Logo.png',
+          'logoUrl' => 'public/images/logos/Nottingham_Lions_Logo.png',
           'players' => array(),
         ),
         array(
@@ -98,7 +98,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Hillheads Rd, Whitley Bay NE25 8HP',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/Whitley_Warriors_Logo.png',
+          'logoUrl' => 'public/images/logos/Whitley_Warriors_Logo.png',
           'players' => array(),
         ),
         array(
@@ -108,7 +108,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Planet Ice, 119 Hobs Moat Rd, Solihull B92 8JN',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/08/new-logo-150x150-1.png',
+          'logoUrl' => 'public/images/logos/new-logo-150x150-1.png',
           'players' => array(),
         ),
         array(
@@ -118,7 +118,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Kingston St, Hull HU1 2DZ',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/08/Hull_Jets_Logo-2-320x234.png',
+          'logoUrl' => 'public/images/logos/Hull_Jets_Logo-2-320x234.png',
           'players' => array(),
         ),
         array(
@@ -128,7 +128,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Chester Rd W, Queensferry, Deeside CH5 1SA',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/Deeside-Dragons-Master-320x376.png',
+          'logoUrl' => 'public/images/logos/Deeside-Dragons-Master-320x376.png',
           'players' => array(),
         ),
         array(
@@ -138,7 +138,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Lower Audley St, Blackburn BB2 3DY',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/BHIHC-New-Logo-Main.png-320x320.webp',
+          'logoUrl' => 'public/images/logos/BHIHC-New-Logo-Main.png-320x320.webp',
           'players' => array(),
         ),
         array(
@@ -148,7 +148,7 @@ class LeagueSeeder extends Seeder
           'venueAddress' => 'Town Centre, The Causeway, Stockton-on-Tees, Billingham TS23 2LJ',
           'primaryColour' => '#000000',
           'secondaryColour' => '#000000',
-          'logoUrl' => 'https://widneswild.co.uk/wp-content/uploads/2023/05/Billingham_Stars_Logo.svg_.png',
+          'logoUrl' => 'public/images/logos/Billingham_Stars_Logo.svg_.png',
           'players' => array(),
         ),
       ];

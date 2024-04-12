@@ -42,7 +42,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 const route = useRoute();
-console.log(route);
 
 const breadcrumbs = computed(() => {
   const parts = route.path.split("/").filter((r) => r !== '');

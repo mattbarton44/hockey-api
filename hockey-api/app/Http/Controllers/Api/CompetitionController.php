@@ -20,7 +20,12 @@ class CompetitionController extends Controller
 
     public function store(StoreCompetitionRequest $request)
     {
-      $competition = Competition::create($request->all());
+      $competition = Competition::create($request->except('logo'));
+      if ($request->hasFile('logo')) {
+        $path = $request->logo->store('public/images');
+        $competition->logoUrl = $path;
+        $competition->save();
+      }
       return response()->json([
           'status' => true,
           'message' => "Competition Created successfully!",
@@ -45,12 +50,17 @@ class CompetitionController extends Controller
     }
 
     public function update(StoreCompetitionRequest $request, Competition $competition)
-    {  
-      $competition->update($request->all());
+    {
+      $competition->update($request->except('logo'));
+      if ($request->hasFile('logo')) {
+        $path = $request->logo->store('public/images');
+        $competition->logoUrl = $path;
+        $competition->save();
+      }
       return response()->json([
           'status' => true,
           'message' => "Competition Updated successfully!",
-          'data' => $competition
+          'data' => $competition,
       ], 200);
     }
 
