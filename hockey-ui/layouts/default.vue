@@ -1,7 +1,7 @@
 <template>
    <div class="min-h-full">
-    <navBar />
-    <headerBar />
+    <layout-nav />
+    <layout-header />
     <main>
       <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 overflow-y-auto h-full">
         <!-- Your content -->

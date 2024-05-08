@@ -12,6 +12,6 @@ class Competition extends Model
 
     public function seasons()
     {
-        return $this->hasMany(Season::class);
+        return $this->hasMany(Season::class)->orderBy('startDate', 'desc');
     }
 }

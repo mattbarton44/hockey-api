@@ -4,7 +4,7 @@
     <div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
       <div class="flex space-x-8">
         <div class="">
-          <logo class="w-20 h-20" :sources="[data.logoUrl]" />
+          <ui-logo class="w-20 h-20" :sources="[data.logoUrl]" />
         </div>
         <div class="my-auto">
           <h3 class="text-3xl font-semibold leading-6 text-gray-900">{{ data.name }}</h3>
@@ -66,33 +66,12 @@
 
 <script setup>
 import { ChevronRightIcon } from '@heroicons/vue/20/solid';
-import axios from 'axios'
 
 const route = useRoute();
 const { cid } = route.params;
 
 let data = ref(null);
-axios.get(`http://localhost/api/competitions/${cid}`)
-.then((response) => {
-  data.value = response.data.data;
-})
-.catch((e) => console.log(e))
-
-const rowProps = ['id', 'name', 'description'];
-
-const tabs = [
-  { name: 'Applied', href: '#', current: false },
-  { name: 'Phone Screening', href: '#', current: false },
-  { name: 'Interview', href: '#', current: true },
-  { name: 'Offer', href: '#', current: false },
-  { name: 'Hired', href: '#', current: false },
-]
-
-const people = [
-  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-  // More people...
-]
-
+api.competitions.show(cid, (d) => data.value = d);
 
 definePageMeta({ requiresAuth: true });
 </script>

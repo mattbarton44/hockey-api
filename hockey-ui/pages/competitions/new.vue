@@ -37,7 +37,7 @@
         </div>
         
         <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4">
-          <actionButton @click="createModel">Create Competition</actionButton>
+          <button-action @click="createModel">Create Competition</button-action>
         </div>
       </div>
     </div>
@@ -45,8 +45,6 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-
 const data = ref({
   name: '',
   nickname: '',

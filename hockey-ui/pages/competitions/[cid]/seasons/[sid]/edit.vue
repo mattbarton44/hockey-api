@@ -4,7 +4,6 @@
 </template>
 
 <script setup>
-import axios from 'axios';
 const route = useRoute();
 
 definePageMeta({ requiresAuth: true })

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Season;
 use App\Models\Game;
 use App\Http\Requests\StoreSeasonRequest;
+use Illuminate\Http\Request;
 
 class SeasonController extends Controller
 {
@@ -55,38 +56,33 @@ class SeasonController extends Controller
       ], 200);
     }
     
-    public function spawnAllGames(Season $season)
+    public function spawnAllGames(Request $request, Season $season)
     {
-      // get season settings (how many games home and away each);
-      // then for each team spawn all thier home games seems like the easiest way
-      // loop over $season->rosters and for each team loop over it again and make x home games against every team that isn't itself
-
       $games = array();
       foreach ($season->rosters as $r) {
-        // lets assume 1 home 1 away for now
         foreach ($season->rosters as $r2) {
           if($r != $r2) {
-            $games[] = new Game([
-              'home_team_id' => $r->team_id,
-              'away_team_id' => $r2->team_id,
-              'venueName' => $r->team->venueName,
-              'venueAddress' => $r->team->venueAddress,
-              'time' => null,
-              'status' => 'TBC',
-              'scoreType' => null,
-              'homeTeamScore' => null,
-              'visitingTeamScore' => null,
-              'homeTeamScoreSo' => null,
-              'visitingTeamScoreSo' => null,
-              'season_id' => null,
-              'type' => 'league',
-            ]);
+            for($i = 1; $i <= $request->quantity; $i++) {
+              $games[] = new Game([
+                'home_team_id' => $r->team_id,
+                'away_team_id' => $r2->team_id,
+                'venueName' => $r->team->venueName,
+                'venueAddress' => $r->team->venueAddress,
+                'time' => null,
+                'status' => $request->status,
+                'scoreType' => null,
+                'homeTeamScore' => null,
+                'visitingTeamScore' => null,
+                'homeTeamScoreSo' => null,
+                'visitingTeamScoreSo' => null,
+                'season_id' => null,
+                'type' => $request->type,
+              ]);
+            }
           }
         }
       }
-
       $season->games()->savemany($games);
-      
       return response()->json([
           'status' => true,
           'message' => "Spawned all games",

@@ -1,26 +1,51 @@
 <template>
-  <div class="max-w-xl space-y-4">
-    <div class="font-bold">Create New Season</div> 
-    <propRow label="Competition ID" :value="cid" />
-    <stackedInput label="Name">
-      <input type="text" v-model="data.name" class="w-full border py-1.5 px-2 placeholder:text-gray-400 text-sm text-gray-900" />
-    </stackedInput>
-    <stackedInput label="Start Date">
-      <input type="text" v-model="data.startDate" class="w-full border py-1.5 px-2 placeholder:text-gray-400 text-sm text-gray-900" />
-    </stackedInput>
-    <stackedInput label="End Date">
-      <input type="text" v-model="data.endDate" class="w-full border py-1.5 px-2 placeholder:text-gray-400 text-sm text-gray-900" />
-    </stackedInput>
-    <div>
-      <button class="text-xs bg-green-400 px-2 py-1 rounded-sm hover:bg-green-600 hover:text-white" @click="createSeason">
-        Create Season
-      </button>
+
+  <div class="w-full">
+    <div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+      <h3 class="text-lg font-semibold leading-6 text-gray-900 py-2">Create New Season</h3>
+    </div>
+    <div class="w-full grid grid-cols-2 mt-6 gap-8">
+      <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+        <div class="space-y-4 p-8">
+
+          <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Competition</label>
+            <div class="mt-2">
+              <span class="">{{parentData.name}}</span>
+            </div>
+          </div>
+
+          <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Season Name</label>
+            <div class="mt-2">
+              <input type="text" v-model="data.name" class=" py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none" />
+            </div>
+          </div>
+
+          <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Start Date</label>
+            <div class="mt-2">
+              <input type="date" v-model="data.startDate" class=" py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none" />
+            </div>
+          </div>
+
+          <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">End Date</label>
+            <div class="mt-2">
+              <input type="date" v-model="data.endDate" class=" py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4">
+          <button-action @click="createModel">Create Season</button-action>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import axios from 'axios';
 const route = useRoute();
 const { cid } = route.params;
 
@@ -33,22 +58,12 @@ const data = ref({
   endDate: '',
 });
 
+api.competitions.show(cid, (d) => parentData.value = d);
 
-axios.get(`http://localhost/api/competitions/${cid}`)
-.then((response) => {
-  parentData.value = response.data.data;
-  data.value.name = parentData.value.name;
-}).catch((e) => console.log(e));
-
-const createSeason = () => {
-  axios.post('http://localhost/api/seasons', data.value)
-  .then((response) => {
-    console.log(response);
-    navigateTo(`/competitions/${cid}`)
-  })
-  .catch((e) => console.log(e))
+const createModel = () => {
+  api.seasons.store(data.value, () => navigateTo(`/competitions/${cid}`));
 }
 
 
-definePageMeta({ requiresAuth: true });
+definePageMeta({ requiresAuth: true, name: 'New Season' });
 </script>

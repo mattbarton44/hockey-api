@@ -36,6 +36,31 @@ const api = {
       .then((response) => { handler(); })
       .catch(catcher)
     },
+  },
+  seasons: {
+    store: async (data, handler) => {
+      await axios.post(`${apiURL}/seasons`, data)
+      .then((response) => { handler(); })
+      .catch(catcher)
+    },
+    show: async (seasonId, handler) => {
+      await axios.get(`${apiURL}/seasons/${seasonId}`)
+      .then((response) => { handler(response.data.data); })
+      .catch(catcher)
+    },
+    spawnAllGames: async (seasonId, data, handler) => {
+      await axios.post(`${apiURL}/seasons/${seasonId}/spawnAllGames`,
+      data)
+      .then((response) => { handler(response.data.data); })
+      .catch(catcher)
+    },
+  },
+  games: {
+    destroy: async (gameId, handler) => {
+      await axios.delete(`${apiURL}/games/${gameId}`)
+      .then((response) => { handler(); })
+      .catch(catcher)
+    },
   }
 }
 

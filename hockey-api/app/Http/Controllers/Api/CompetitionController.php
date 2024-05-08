@@ -41,14 +41,6 @@ class CompetitionController extends Controller
       ]);
     }
 
-    public function seasons(Competition $competition)
-    {
-      return response()->json([
-        'status' => true,
-        'data' => $competition->with('seasons')->get(),
-      ]);
-    }
-
     public function update(StoreCompetitionRequest $request, Competition $competition)
     {
       $competition->update($request->except('logo'));

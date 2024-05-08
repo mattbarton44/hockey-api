@@ -3,13 +3,13 @@
     <div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
       <h3 class="text-lg font-semibold leading-6 text-gray-900">Competitions</h3>
       <div class="mt-3 sm:ml-4 sm:mt-0">
-        <navButton @click="navigateTo(`/competitions/new`)">Create new competition</navButton>
+        <button-nav @click="navigateTo(`/competitions/new`)">Create new competition</button-nav>
       </div>
     </div>
     <ul role="list" class="mt-6 divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
       <li v-for="row in data" :key="row.id" class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 cursor-pointer" @click="navigateTo('/competitions/'+row.id)">
         <div class="flex min-w-0 gap-x-4">
-          <logo class="h-12 w-12" :sources="[row.logoUrl]" />
+          <ui-logo class="h-12 w-12" :sources="[row.logoUrl]" />
           <div class="min-w-0 flex-auto">
             <p class="text-sm font-semibold leading-6 text-gray-900">
               <a>
@@ -37,7 +37,6 @@
 </template>
 
 <script setup>
-import axios from 'axios';
 import { ChevronRightIcon } from '@heroicons/vue/20/solid';
 
 let data = ref(null);

@@ -1,3 +1,84 @@
+
+add a bulkEditGames page, have a table of the games with the ability to change lots of them
+
+add a view game page, have it display score/result game log if events done and stats if events/stats are done
+
+add a edit game page can edit one game
+
+do add new team functionality, 
+
+do add new game functionality
+  - maybe just do it on the games/new page and pass in a season id, pre filter options based on season
+    - when season is selected pre filters change
+
+
+
+create a table
+
+
+
+
+maybe consider adding a sub menu for season/id page,
+
+  with tabs/navs for games/teams/standings etc
+
+
+
+  create defaults for competittions
+    - default new game type => league
+    - default new game status => upcoming
+
+
+
+- view season
+
+  season / competition information?
+
+    teams 
+      -> view list of teams
+      -> add a new team, remove a team from the season
+        -> what happens to games when you remove a team?
+      -> link to roster for each team
+    
+    games
+      -> view all games
+      -> add a new game
+      -> spawn games based on teams
+        -> use a modal to enter, how many home, how many away, default type and default status
+      -> bulk add page
+      -> bulk edit page
+      
+    use tabbed view, 
+      -> overview - show standings and stats widgets, last results, upcoming fixtures etc
+      -> teams
+      -> games
+
+
+
+
+
+- edit season
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 should game status be implicit??
 
 upcoming = has time but it's in the future
