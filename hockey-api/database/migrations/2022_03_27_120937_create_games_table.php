@@ -30,8 +30,8 @@ return new class extends Migration
             $table->integer('homeTeamScoreSo')->nullable();
             $table->integer('visitingTeamScoreSo')->nullable();
             $table->foreignId('season_id')->constrained();
-            $table->foreignId('home_team_id')->constrained('teams');
-            $table->foreignId('away_team_id')->constrained('teams');
+            $table->foreignId('home_team_id')->nullable()->constrained('rosters')->cascadeOnDelete();
+            $table->foreignId('away_team_id')->nullable()->constrained('rosters')->cascadeOnDelete();
         });
     }
 

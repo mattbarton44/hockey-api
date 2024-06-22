@@ -35,8 +35,9 @@ Route::apiResource('teams', TeamController::class);
 Route::apiResource('rosters', RosterController::class);
 Route::apiResource('players', PlayerController::class);
 Route::apiResource('rosterPlayers', RosterPlayerController::class);
-Route::apiResource('games', GameController::class);
+Route::resource('games', GameController::class);
 Route::apiResource('gameStatistics', GameStatisticController::class);
 Route::apiResource('gameEvents', GameEventController::class);
 
 Route::post('/seasons/{season}/spawnAllGames', [SeasonController::class, 'spawnAllGames']);
+Route::post('/seasons/{season}/bulkStore', [SeasonController::class, 'bulkStore']);

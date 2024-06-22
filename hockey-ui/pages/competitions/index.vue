@@ -11,12 +11,10 @@
         <div class="flex min-w-0 gap-x-4">
           <ui-logo class="h-12 w-12" :sources="[row.logoUrl]" />
           <div class="min-w-0 flex-auto">
-            <p class="text-sm font-semibold leading-6 text-gray-900">
-              <a>
-                <span class="absolute inset-x-0 -top-px bottom-0" />
-                {{ row.name }}
-              </a>
-            </p>
+            <div class="text-sm font-semibold leading-6 text-gray-900">
+              <span class="absolute inset-x-0 -top-px bottom-0" />
+              {{ row.name }}
+            </div>
             <p class="mt-1 flex text-xs leading-5 text-gray-500">
               {{ row.description }}
             </p>

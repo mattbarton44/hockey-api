@@ -1,9 +1,7 @@
 <template>
-
-
   <div class="w-full" v-if="loaded">
     <div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
-      <h3 class="text-lg font-semibold leading-6 text-gray-900 py-2">{{parentData?.competition?.name}} {{parentData.name}} - New Game</h3>
+      <h3 class="text-lg font-semibold leading-6 text-gray-900 py-2">{{parentData?.competition?.name}} {{parentData.name}} - Edit Game</h3>
     </div>
     <div class="w-full flex space-x-12 py-6">
 
@@ -37,7 +35,7 @@
               </a>
             </li>
             <li class="flex items-center border-t border-gray-900/10 py-4 w-full">
-              <button-action @click="createModel" class="w-full">Create Game</button-action>
+              <button-action @click="updateModel" class="w-full">Update Game</button-action>
             </li>
           </ol>
         </nav>
@@ -59,7 +57,6 @@
           </div>
           <div class="grid grid-cols-2 gap-8 p-8">
 
-            
             <div class="">
               <label class="block text-sm font-medium leading-6 text-gray-900">Name</label>
               <div class="mt-2">
@@ -67,7 +64,6 @@
               </div>
             </div>
 
-            
             <div class="">
               <label class="block text-sm font-medium leading-6 text-gray-900">Time</label>
               <div class="mt-2">
@@ -373,7 +369,7 @@
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { GAME_TYPES, GAME_STATUSES, SCORE_TYPES, PENALTY_TYPES } from '@/constants.js';
 const route = useRoute();
-const { cid, sid } = route.params;
+const { cid, sid, gid } = route.params;
 
 // current / complete / upcoming
 const steps = ref([ 
@@ -419,8 +415,14 @@ const data = ref({
 
 const playerLookup = computed(() => [...data.value.homePlayers, ...data.value.awayPlayers].reduce((p, c) => ({ ...p, [c.id]: c.name }), {}));
 
-
-api.seasons.show(sid, (d) => { parentData.value = d; loaded.value = true; });
+api.games.edit(gid, (d) => { 
+  const { season, ...g } = d;
+  parentData.value = season;
+  data.value = { ...g, time: g.time.split(" ").join("T") };
+  loaded.value = true;
+  console.log(parentData.value);
+  console.log(data.value);
+});
 
 watch(() => data.value.home_team_id,
   (newValue) => {
@@ -466,12 +468,12 @@ watch(() => data.value.away_team_id,
   { deep: true }
 );
 
-const createModel = () => {
+const updateModel = () => {
   if(data.value.use_home_venue) {
     data.value.venueName = homeTeamVenue.value.venueName;
     data.value.venueAddress = homeTeamVenue.value.venueAddress;
   }
-  api.games.store(data.value, (r) => navigateTo(`/competitions/${cid}/seasons/${sid}`));
+  api.games.update(gid, data.value, (r) => navigateTo(`/competitions/${cid}/seasons/${sid}`));
 }
 
 const teamOptions = computed(() => (parentData.value.rosters) ? parentData.value.rosters.map((r) => ({ id: r.id, name: r.team.name })) : []);

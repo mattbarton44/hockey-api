@@ -1,6 +1,6 @@
 <template>
-  <header class="bg-white shadow">
-    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+  <header class="bg-white shadow h-14">
+    <div v-cloak class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center align-middle h-full">
       <div>
         <nav class="sm:hidden" aria-label="Back">
           <a href="#" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">
@@ -10,28 +10,16 @@
         </nav>
         <nav class="hidden sm:flex" aria-label="Breadcrumb">
           <ol role="list" class="flex items-center space-x-4 uppercase">
-            <li v-for="crumb, i in breadcrumbs" :key="crumb.path">
-              <NuxtLink :to="crumb.path" v-if="i === 0" class="flex">
-                <a href="#" class="text-xs font-semibold text-gray-500 hover:text-gray-700">
+            <li v-for="crumb, i in breadcrumbs" :key="crumb.path" class="h-14 flex items-center">
+              <NuxtLink :to="crumb.path" class="flex items-center">
+                <ChevronRightIcon class="h-5 w-5 flex-shrink-0 text-gray-400 font-semibold" aria-hidden="true" v-if="i !== 0"  />
+                <div href="#" class="ml-4 text-xs font-semibold text-gray-500 hover:text-gray-700">
                   {{ crumb.label }}
-                </a>
-              </NuxtLink>
-              <NuxtLink :to="crumb.path" v-else class="flex items-center">
-                <ChevronRightIcon class="h-5 w-5 flex-shrink-0 text-gray-400 font-semibold" aria-hidden="true" />
-                <a href="#" class="ml-4 text-xs font-semibold text-gray-500 hover:text-gray-700">
-                  {{ crumb.label }}
-                </a>
+                </div>
               </NuxtLink>
             </li>
           </ol>
         </nav>
-      </div>
-      <div class="mt-2 md:flex md:items-center md:justify-between" v-if="false">
-        <div class="min-w-0 flex-1">
-          <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{{ route.name }}</h2>
-        </div>
-        <div class="mt-4 flex flex-shrink-0 md:ml-4 md:mt-0">
-        </div>
       </div>
     </div>
   </header>

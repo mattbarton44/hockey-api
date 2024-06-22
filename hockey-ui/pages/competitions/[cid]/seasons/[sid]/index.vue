@@ -115,16 +115,15 @@
 
     </div>
     <div v-else-if="activeTab === 'Games'" class="w-full mt-6">
-
-
       <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-        <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+        <div class="bg-white px-4 py-5 sm:px-6">
           <div class="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
             <div class="ml-4 mt-2">
               <h3 class="text-base font-semibold leading-6 text-gray-900">Games</h3>
             </div>
             <div class="ml-4 mt-2 flex-shrink-0 space-x-4">
               <button-nav @click="navigateTo(`/competitions/${cid}/seasons/${sid}/games/new`)">Add New</button-nav>
+              <button-nav @click="navigateTo(`/competitions/${cid}/seasons/${sid}/games/bulk`)">Bulk Add</button-nav>
               <button-nav @click="openSAGModal">Spawn All Games</button-nav>
             </div>
           </div>
@@ -134,8 +133,9 @@
             <table class="w-full">
               <thead class="text-xs text-gray-800">
                 <tr class="bg-gray-100 border-y border-grey-600">
-                  <th class="py-2 text-left pl-4">DATE</th>
-                  <th class="px-6">MATCHUP</th>
+                  <th class="py-2 text-left pl-4">NAME</th>
+                  <th class="text-left">DATE</th>
+                  <th class="px-2">MATCHUP</th>
                   <th class="text-left">LOCATION</th>
                   <th class="text-left">ACTIONS</th>
                 </tr>
@@ -143,16 +143,23 @@
               <tbody class="divide-y divide-gray-200">
                 <tr v-for="d, i in allGames" class="px-4">
                   <td class="pl-4">
+                    {{ d.name }}
+                  </td>
+                  <td class="">
                     <div>{{ (d.time) ? new Intl.DateTimeFormat('en-GB', { dateStyle: 'short' }).format(new Date(d.time)) : 'TBC' }}</div>
                     <div v-if="d.time"><span class="text-gray-500 text-xs">F/O:</span> {{new Intl.DateTimeFormat('en-GB', { timeStyle: 'short' }).format(new Date(d.time)) }}</div>
                   </td>
                   <td class="flex space-x-2 py-2 px-12">
-                    <div class="flex space-x-2 grow basis-1/2">
-                      <ui-logo class="w-10 h-10 mr-3 my-auto" :sources="[d.home_team.logoUrl]" />
-                      <span class="font-semibold text-md my-auto">{{d.home_team.name}}</span>
+                    <div class="flex space-x-2 grow basis-1/2" v-if="d.home_team">
+                      <ui-logo class="w-10 h-10 mr-3 my-auto" :sources="[d.home_team.team.logoUrl]" />
+                      <span class="font-semibold text-md my-auto">{{d.home_team.team.name}}</span>
+                    </div>
+                    <div class="flex space-x-2 grow basis-1/2" v-else>
+                      <ui-logo class="w-10 h-10 mr-3 my-auto" :sources="[]" />
+                      <span class="font-semibold text-md my-auto">TBC</span>
                     </div>
                     <div class="my-auto text-center text-xs text-gray-500 font-semibold">
-                      <div v-if="d.status === 'COMPLETED'" class="mt-2">
+                      <div v-if="d.status === 'Completed'" class="mt-2">
                         <div class="flex justify-center">
                           <div class="text-2xl" :class="{ 'text-black': d.winner === 'home' }">
                             {{ d.homeGoals }}
@@ -166,9 +173,13 @@
                       </div>
                       <div v-else>vs</div>
                     </div>
-                    <div class="flex space-x-2 justify-end text-right grow basis-1/2">
-                      <span class="font-semibold text-md my-auto mr-3">{{d.away_team.name}}</span>
-                      <ui-logo class="w-10 h-10 my-auto" :sources="[d.away_team.logoUrl]" />
+                    <div class="flex space-x-2 justify-end text-right grow basis-1/2" v-if="d.away_team">
+                      <span class="font-semibold text-md my-auto mr-3">{{d.away_team.team.name}}</span>
+                      <ui-logo class="w-10 h-10 my-auto" :sources="[d.away_team.team.logoUrl]" />
+                    </div>
+                    <div class="flex space-x-2 justify-end text-right grow basis-1/2" v-else>
+                      <span class="font-semibold text-md my-auto mr-3">TBC</span>
+                      <ui-logo class="w-10 h-10 my-auto" :sources="[]" />
                     </div>
                   </td>
                   <td class="whitespace-nowrap">{{d.venueName}}</td>
@@ -184,23 +195,34 @@
         </div>
       </div>
     </div>
-    <div v-else-if="activeTab === 'Teams'" class="w-full grid grid-cols-2 mt-6 gap-8">
-      <div class="">
-        <div class="bg-white border border-grey-600 w-full">
-          <div class="text-base font-semibold p-6 flex justify-between">
-            <div>Teams</div>
-            <div><button-nav>Add New</button-nav></div>
+    <div v-else-if="activeTab === 'Teams'" class="w-full mt-6">
+
+      
+      <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+        <div class="bg-white px-4 py-5 sm:px-6">
+          <div class="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+            <div class="ml-4 mt-2">
+              <h3 class="text-base font-semibold leading-6 text-gray-900">Teams</h3>
+            </div>
+            <div class="ml-4 mt-2 flex-shrink-0 space-x-4">
+              <button-nav @click="openAddTeamModal">Add New</button-nav>
+            </div>
           </div>
+        </div>
+        <div class="">
           <div class="text-sm">
             <table class="w-full">
-              
               <thead class="text-xs text-gray-800">
                 <tr class="bg-gray-100 border-y border-grey-600">
                   <th class="py-2 text-left pl-4">NAME</th>
                   <th class="text-left">VENUE</th>
+                  <th class="text-left">ROSTER</th>
+                  <th class="text-left">GAMES</th>
+                  <th class="text-left">ACTIONS</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
+                
                 <tr v-for="d, i in data.rosters" class="">
                   <td class="flex space-x-2 px-4 py-2">
                     <ui-logo class="w-10 h-10 mr-3 my-auto" :sources="[d.team.logoUrl, d.team.club.logoUrl]" />
@@ -209,7 +231,16 @@
                   <td class="text-xs pr-2">
                     <div>{{  d.team.venueName }}</div>
                     <div>{{  d.team.venueAddress }}</div>
-                    
+                  </td>
+                  <td class="text-xs pr-2">
+                    <div>{{  d.players.length }}</div>
+                  </td>
+                  <td class="text-xs pr-2">
+                    <div>{{  data.games.filter((g) => [g.home_team_id, g.away_team_id].includes(d.id)).length }}</div>
+                  </td>
+                  <td class="whitespace-nowrap font-semibold space-x-2 w-24">
+                    <button-view @click="navigateTo(`/clubs/${d.team.club.id}/teams/${d.team.id}/rosters/${d.id}`)" />
+                    <button-trash @click="deleteTeam(d.id)" />
                   </td>
                 </tr>
               </tbody>
@@ -218,7 +249,8 @@
         </div>
       </div>
     </div>
-    <spawnGamesModal :data="data" :open="SAGModal" @closeModal="closeSAGModal" />
+    <modal-spawnGames :data="data" :open="SAGModal" @closeModal="closeSAGModal" />
+    <modal-addTeam :data="data" :open="addTeamModal" @closeModal="closeAddTeamModal" />
   </div>
 </template>
 
@@ -233,7 +265,7 @@ let data = ref(null);
 const getData = () => api.seasons.show(sid, (d) => data.value = d);
 onMounted(() => getData());
 
-const activeTab = ref('Games');
+const activeTab = ref('Overview');
 const tabs = ['Overview', 'Games', 'Teams'];
 
 
@@ -244,7 +276,7 @@ const allGames = computed(() => {
     .sort((a, b) => Date.parse(a.time) - Date.parse(b.time)) // most recent last
     // .slice(0, 5) // limit to 5
     .map((g) => {
-      if(g.status != 'COMPLETED') return g;
+      if(g.status != 'Completed') return g;
       let winner = 'home';
       let homeGoals = g.homeTeamScore;
       let awayGoals = g.visitingTeamScore;
@@ -265,6 +297,7 @@ const allGames = computed(() => {
 })
 
 const deleteGame = (id) => api.games.destroy(id, () => getData());
+const deleteTeam = (id) => api.rosters.destroy(id, () => getData());
 
 // i think possibly this should come from the api and be calculated there and just the info sent across
 const standings = computed(() => {
@@ -273,15 +306,18 @@ const standings = computed(() => {
   const games = data.value.games;
   const rosters = data.value.rosters;
   return rosters.map((r) => ({ team: r.team.name, logo: r.team.logoUrl,  ...games.reduce((a, g) => {
-    if([g.home_team_id ,g.away_team_id].includes(r.team.id) && g.status === 'COMPLETED' && g.type === 'league') {
-      let w = 0, l = 0, otl = 0;
-      if(g.home_team_id === r.team.id) {
+    if([g.home_team_id ,g.away_team_id].includes(r.id) && g.status === 'Completed' && g.type === 'League') {
+      let w = 0, l = 0, otl = 0, gf = 0, ga = 0, gd = 0;
+      if(g.home_team_id === r.id) {
         if(g.scoreType !== 'SO') {
           if(g.homeTeamScore > g.visitingTeamScore) w++;
           else if (g.scoreType === 'OT') otl++;
           else l++;
         } else if(g.homeTeamScoreSo > g.visitingTeamScoreSo) w++;
         else otl++;
+        gf = g.homeTeamScore;
+        ga = g.visitingTeamScore;
+        gd = gf - ga;
       } else {
         if(g.scoreType !== 'SO') {
           if(g.homeTeamScore < g.visitingTeamScore) w++;
@@ -289,11 +325,23 @@ const standings = computed(() => {
           else l++;
         } else if(g.homeTeamScoreSo < g.visitingTeamScoreSo) w++;
         else otl++;
+        gf = g.visitingTeamScore;
+        ga = g.homeTeamScore;
+        gd = gf - ga;
       }
-      return { gp: a.gp + 1, w: a.w + w, l: a.l + l, otl: a.otl + otl, pts: a.pts + ((w*scoring.w) + (otl*scoring.otl) + (l*scoring.l)) }
+      return {
+        gp: a.gp + 1,
+        w: a.w + w,
+        l: a.l + l,
+        otl: a.otl + otl,
+        gf: a.gf + gf,
+        ga: a.ga + ga,
+        gd: a.gd + gd,
+        pts: a.pts + ((w*scoring.w) + (otl*scoring.otl) + (l*scoring.l))
+      }
     }
     return a;
-  }, { gp: 0, w: 0, l: 0, otl: 0, pts: 0 }) 
+  }, { gp: 0, w: 0, l: 0, otl: 0, gf: 0, ga: 0, gd: 0, pts: 0 }) 
   })).sort((a, b) => b.pts - a.pts)
   // put gd into here as a secondary sort? also put gf/ga/gd into expanded table?
   // move this logic into a api call, implement scoring and 'tiebreakers' in the competition/seasons schema to use to calculate
@@ -303,8 +351,14 @@ const standings = computed(() => {
 let SAGModal = ref(false);
 const openSAGModal = () => SAGModal.value = true;
 const closeSAGModal = () => {
-  SAGModal.value = false; 
-  console.log('closing modal')
+  SAGModal.value = false;
+  getData();
+}
+
+let addTeamModal = ref(false);
+const openAddTeamModal = () => addTeamModal.value = true;
+const closeAddTeamModal = () => {
+  addTeamModal.value = false; 
   getData();
 }
 

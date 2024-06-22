@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('player_id')->constrained();
-            $table->foreignId('game_id')->constrained();
+            $table->foreignId('game_player_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('game_id')->constrained()->cascadeOnDelete();
             $table->tinyInteger('g')->nullable();
             $table->tinyInteger('a')->nullable();
             $table->tinyInteger('ppg')->nullable();
