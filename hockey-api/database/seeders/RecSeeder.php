@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
-use App\Models\Team;
 
 class RecSeeder extends Seeder
 {
@@ -95,6 +94,7 @@ class RecSeeder extends Seeder
         ),
       ];
 
+      $rosterLookup = array();
       foreach($nrhcClubs as $nclub) {
         $clubId = DB::table('clubs')->insertGetId([
           'name' => $nclub["name"],
@@ -115,8 +115,9 @@ class RecSeeder extends Seeder
           'logoUrl' => $nclub["logoUrl"],
           'club_id' => $clubId
         ]);
-        DB::table('rosters')->insertGetId(['season_id' => $seasonId1, 'team_id' => $teamId]);        
-        DB::table('rosters')->insertGetId(['season_id' => $seasonId2, 'team_id' => $teamId]);
+        $rosterId1 = DB::table('rosters')->insertGetId(['season_id' => $seasonId1, 'team_id' => $teamId]);        
+        $rosterId2 = DB::table('rosters')->insertGetId(['season_id' => $seasonId2, 'team_id' => $teamId]);
+        $rosterLookup[$nclub["name"]] = array("id" => $rosterId2, "venueName" => $nclub["venueName"], "venueAddress" => $nclub["venueAddress"]);
       }
 
 
@@ -142,13 +143,11 @@ class RecSeeder extends Seeder
       ];
 
       foreach($nrhcGames as $game) {
-        $homeTeam = Team::firstWhere('name', $game[0]);
-        $awayTeam = Team::firstWhere('name', $game[1]);
         DB::table('games')->insert([
-          'home_team_id' => $homeTeam->id,
-          'away_team_id' => $awayTeam->id,
-          'venueName' => $homeTeam->venueName,
-          'venueAddress' => $homeTeam->venueAddress,
+          'home_team_id' => $rosterLookup[$game[0]]["id"],
+          'away_team_id' => $rosterLookup[$game[1]]["id"],
+          'venueName' => $rosterLookup[$game[0]]["venueName"],
+          'venueAddress' => $rosterLookup[$game[0]]["venueAddress"],
           'time' => $game[2],
           'status' => $game[3],
           'scoreType' => $game[4],

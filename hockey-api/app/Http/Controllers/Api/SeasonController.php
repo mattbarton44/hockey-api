@@ -33,7 +33,7 @@ class SeasonController extends Controller
     {
       return response()->json([
         'status' => true,
-        'data' => $season->load(['rosters.team.club', 'games.home_team', 'games.away_team', 'competition'])
+        'data' => $season->load(['rosters.team.club', 'rosters.players', 'games.home_team.team', 'games.away_team.team', 'competition'])
       ]);
     }
 
@@ -64,8 +64,8 @@ class SeasonController extends Controller
           if($r != $r2) {
             for($i = 1; $i <= $request->quantity; $i++) {
               $games[] = new Game([
-                'home_team_id' => $r->team_id,
-                'away_team_id' => $r2->team_id,
+                'home_team_id' => $r->id,
+                'away_team_id' => $r2->id,
                 'venueName' => $r->team->venueName,
                 'venueAddress' => $r->team->venueAddress,
                 'time' => null,
@@ -88,4 +88,18 @@ class SeasonController extends Controller
           'message' => "Spawned all games",
       ], 200);
     }
+
+    public function bulkStore(Request $request, Season $season)
+    {
+      $games = array();
+      foreach ($request->all() as $g) {
+        $games[] = new Game($g);
+      }
+      $season->games()->savemany($games);
+      return response()->json([
+          'status' => true,
+          'message' => "Created new fixtures",
+      ], 200);
+    }
+
 }

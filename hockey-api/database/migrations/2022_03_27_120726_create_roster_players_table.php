@@ -19,8 +19,8 @@ return new class extends Migration
             $table->softDeletes();
             $table->string('position')->nullable();
             $table->string('role')->nullable();
-            $table->foreignId('roster_id')->constrained();
-            $table->foreignId('player_id')->constrained();
+            $table->foreignId('roster_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('player_id')->constrained()->cascadeOnDelete();
             $table->json('metadata')->nullable();;
         });
     }

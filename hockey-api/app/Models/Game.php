@@ -12,11 +12,31 @@ class Game extends Model
     
     public function home_team()
     {
-        return $this->belongsTo(Team::class, 'home_team_id');
+        return $this->belongsTo(Roster::class, 'home_team_id');
     }
 
     public function away_team()
     {
-        return $this->belongsTo(Team::class, 'away_team_id');
+        return $this->belongsTo(Roster::class, 'away_team_id');
+    }
+
+    public function players()
+    {
+        return $this->hasMany(GamePlayer::class);
+    }
+    
+    public function events()
+    {
+        return $this->hasMany(GameEvent::class);
+    }
+
+    public function statistics()
+    {
+        return $this->hasMany(GameStatistic::class);
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 }

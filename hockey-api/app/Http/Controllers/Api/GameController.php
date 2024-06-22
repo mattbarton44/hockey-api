@@ -8,11 +8,6 @@ use App\Http\Requests\StoreGameRequest;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
       $games = Game::all();
@@ -22,12 +17,6 @@ class GameController extends Controller
       ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreGameRequest $request)
     {
       $game = Game::create($request->all());
@@ -38,27 +27,22 @@ class GameController extends Controller
       ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
     public function show(Game $game)
     {
       return response()->json([
         'status' => true,
-        'data' => $game
+        'data' => $game,
       ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
+    public function edit(Game $game)
+    {
+      return response()->json([
+        'status' => true,
+        'data' => $game->load(['season.rosters.team.club', 'season.rosters.players', 'season.competition']),
+      ]);
+    }
+
     public function update(StoreGameRequest $request, Game $game)
     {
       $game->update($request->all());
@@ -69,12 +53,6 @@ class GameController extends Controller
       ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Game $game)
     {
       $game->delete();

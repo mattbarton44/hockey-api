@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('game_id')->constrained();
+            $table->foreignId('game_id')->constrained()->cascadeOnDelete();
             $table->string('type'); // goal, penalty, nm
             $table->time('time')->nullable();
+            $table->foreignId('roster_id')->constrained()->cascadeOnDelete();
 
             // goal
             $table->unsignedBigInteger('goal')->nullable();
@@ -28,8 +29,8 @@ return new class extends Migration
             
             // penalty
             $table->unsignedBigInteger('penalty_player')->nullable();
-            $table->unsignedBigInteger('penalty_type')->nullable();
-            $table->unsignedBigInteger('penalty_mins')->nullable();
+            $table->string('penalty_type')->nullable();
+            $table->smallInteger('penalty_mins')->nullable();
             
             // nm
             $table->tinyInteger('mins')->nullable();

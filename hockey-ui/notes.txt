@@ -1,80 +1,41 @@
 
-add a bulkEditGames page, have a table of the games with the ability to change lots of them
+  games new / edit -> events and stats need doing
 
-add a view game page, have it display score/result game log if events done and stats if events/stats are done
+pages to do:
 
-add a edit game page can edit one game
+  edit season
+  
+  create api functions suited for widgets
+    -> filters on games, upcoming, completed etc, or certain teams
+    -> standings calculated on server side?
+    
 
-do add new team functionality, 
-
-do add new game functionality
-  - maybe just do it on the games/new page and pass in a season id, pre filter options based on season
-    - when season is selected pre filters change
-
-
-
-create a table
-
-
-
-
-maybe consider adding a sub menu for season/id page,
-
-  with tabs/navs for games/teams/standings etc
-
-
+  redo clubs and teams pages
+  
+  add way to add players to rosters via text area list
 
   create defaults for competittions
     - default new game type => league
     - default new game status => upcoming
 
 
-
-- view season
-
-  season / competition information?
-
-    teams 
-      -> view list of teams
-      -> add a new team, remove a team from the season
-        -> what happens to games when you remove a team?
-      -> link to roster for each team
+  -- need to implement user / permissions system eventually
+    - certain tasks need to be locked behind permissions that are used on both client and server side
+      - competitions
+        - add competition
+        - edit competition
+          - seasons
+            - create season
+            - edit season
+            - add game
+            - edit game
+            - delete game
+            - update game result
+            - spawn All games
+            - add team
+            - delete team
     
-    games
-      -> view all games
-      -> add a new game
-      -> spawn games based on teams
-        -> use a modal to enter, how many home, how many away, default type and default status
-      -> bulk add page
-      -> bulk edit page
-      
-    use tabbed view, 
-      -> overview - show standings and stats widgets, last results, upcoming fixtures etc
-      -> teams
-      -> games
-
-
-
-
-
-- edit season
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    - maybe use roles here instead of individual user to permission matrix
 
 
 

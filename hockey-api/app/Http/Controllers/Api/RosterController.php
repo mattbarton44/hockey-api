@@ -8,11 +8,6 @@ use App\Http\Requests\StoreRosterRequest;
 
 class RosterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
       $rosters = Roster::all();
@@ -22,16 +17,13 @@ class RosterController extends Controller
       ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreRosterRequest $request)
     {
       $roster = Roster::create($request->all());
-      $roster->players()->createMany($request->players);
+
+      if ($request->players) {
+        $roster->players()->createMany($request->players);
+      }
 
       return response()->json([
           'status' => true,
@@ -40,27 +32,14 @@ class RosterController extends Controller
       ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Roster  $roster
-     * @return \Illuminate\Http\Response
-     */
     public function show(Roster $roster)
     {
       return response()->json([
         'status' => true,
-        'data' => $roster->load(['players', 'season.competition'])
+        'data' => $roster->load(['players.player', 'season.competition'])
       ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Roster  $roster
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreRosterRequest $request, Roster $roster)
     {
       $roster->update($request->all());
@@ -70,13 +49,7 @@ class RosterController extends Controller
           'data' => $roster
       ], 200);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Roster  $roster
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Roster $roster)
     {
       $roster->delete();

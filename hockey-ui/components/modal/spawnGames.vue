@@ -27,14 +27,18 @@
                     <div class="">
                       <label class="block text-sm font-medium leading-6 text-gray-900">Game Type</label>
                       <div class="mt-2">
-                        <input type="text" v-model="spawnData.type" class=" py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none" />
+                        <select v-model="spawnData.type" class="py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none">
+                          <option v-for="opt in GAME_TYPES" :value="opt">{{ opt }}</option>
+                        </select>
                       </div>
                     </div>
                     
                     <div class="">
                       <label class="block text-sm font-medium leading-6 text-gray-900">Game Status</label>
                       <div class="mt-2">
-                        <input type="text" v-model="spawnData.status" class=" py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none" />
+                        <select v-model="spawnData.status" class="py-1.5 px-2 flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-great-blue-600 sm:max-w-md outline-none">
+                          <option v-for="opt in GAME_STATUSES" :value="opt">{{ opt }}</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -56,8 +60,9 @@
 </template>
 
 <script setup>
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
+import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
+import { GAME_TYPES, GAME_STATUSES } from '@/constants.js';
 
 const props = defineProps({
   data: Object,
@@ -70,7 +75,7 @@ const { cid, sid } = route.params;
 
 const spawnData = ref({
   quantity: 1,
-  type: 'league',
+  type: 'League',
   status: 'TBC',
 })
 
