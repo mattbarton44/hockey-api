@@ -20,7 +20,12 @@ class TeamController extends Controller
 
     public function store(StoreTeamRequest $request)
     {
-      $team = Team::create($request->all());
+      $team = Team::create($request->except('logo'));
+      if ($request->hasFile('logo')) {
+        $path = $request->logo->store('public/images');
+        $team->logoUrl = $path;
+        $team->save();
+      }
       return response()->json([
           'status' => true,
           'message' => "Team Created successfully!",
@@ -38,7 +43,13 @@ class TeamController extends Controller
 
     public function update(StoreTeamRequest $request, Team $team)
     {
-      $team->update($request->all());
+      $team->update($request->except('logo'));
+      if ($request->hasFile('logo')) {
+        // maybe delete old file if logoUrl exists already?
+        $path = $request->logo->store('public/images');
+        $team->logoUrl = $path;
+        $team->save();
+      }
       return response()->json([
           'status' => true,
           'message' => "Team Updated successfully!",
