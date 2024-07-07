@@ -1,3 +1,0 @@
-sudo password: 1450bBJz4yIxWeRvaTo5
-database password: 2zpYM87NBGTLqXq8RwzC
-
