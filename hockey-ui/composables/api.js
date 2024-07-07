@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const catcher = (e) => console.log(e);
-const apiURL = 'http://localhost/api';
+const apiURL = 'https://api.sheffieldbears.co.uk/api'; // 'http://localhost/api';
 
 const api = {
   competitions: {
